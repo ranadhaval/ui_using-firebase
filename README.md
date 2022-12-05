@@ -1,16 +1,5 @@
-# project_x
+ui shows how we can show the any employee who are active with thw organization and joined the organization more than 5 years ago using firebase flutter
 
-A new Flutter project.
 
-## Getting Started
+# project_x![WhatsApp Image 2022-12-06 at 1 41 27 AM](https://user-images.githubusercontent.com/76704939/205733809-7d97f706-e0da-4801-93ff-f468457fc6a7.jpeg)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
