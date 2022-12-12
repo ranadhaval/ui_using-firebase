@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 // import 'package:project_x/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:hexcolor/hexcolor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:project_x/sampl.dart';
 
 class home extends StatefulWidget {
-  const home({super.key});
+  // const home({super.key});
+  // String h;
+  home({String? h});
 
   @override
   State<home> createState() => _homeState();
@@ -20,6 +26,13 @@ class _homeState extends State<home> {
     super.initState();
 
     datag = my_data();
+  }
+
+  signout() {
+    GoogleSignIn().signOut();
+    FirebaseAuth.instance.signOut();
+      Navigator.push(context, MaterialPageRoute(builder: (_) => sample()));
+    
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> my_data() {
@@ -48,12 +61,18 @@ class _homeState extends State<home> {
           return Scaffold(
             backgroundColor: HexColor("#0d1927"),
             appBar: AppBar(
-              elevation: 0,
-              backgroundColor: HexColor("#0d1927"),
-              title: Text(
-                " Zylu Business Solutions Employees",
-              ),
-            ),
+                actions: [
+                  InkWell(
+                      onTap: () {
+                        signout();
+
+                      },
+                      child: Icon(Icons.exit_to_app))
+                ],
+                elevation: 0,
+                backgroundColor: HexColor("#0d1927"),
+                title:
+                  User==null ?  Text("no user"):Text("${FirebaseAuth.instance.currentUser!.email}")),
             body: SingleChildScrollView(
               child: Column(
                 children: [
@@ -99,7 +118,7 @@ class _homeState extends State<home> {
                               snapshot.data!.docs.map((DocumentSnapshot snap1) {
                         Map<String, dynamic> data =
                             snap1.data() as Map<String, dynamic>;
-                    
+
                         return Column(
                           children: [
                             (data['status'] == "Active" &&
@@ -132,7 +151,8 @@ class _homeState extends State<home> {
                                       subtitle: Text(
                                         "Joined ${data['years']} years ago",
                                         style: TextStyle(
-                                            color: Colors.white38, fontSize: 13),
+                                            color: Colors.white38,
+                                            fontSize: 13),
                                       ),
                                     ),
                                   )
@@ -164,7 +184,8 @@ class _homeState extends State<home> {
                                       subtitle: Text(
                                         "Joined ${data['years']} years ago",
                                         style: TextStyle(
-                                            color: Colors.white38, fontSize: 13),
+                                            color: Colors.white38,
+                                            fontSize: 13),
                                       ),
                                     ),
                                   )
